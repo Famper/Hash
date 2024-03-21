@@ -1,8 +1,8 @@
 class HashSet:
     def __init__(self) -> None:
-        self.__hash_set: dict = {0: [], 1: [], 2: [], 3: [], 4: []}
+        self.__hash_set: dict = {0: set(), 1: set(), 2: set(), 3: set(), 4: set()}
         self.count_values: int = 0
-        self.divider: int = 5
+        self.divider: int = len(self.__hash_set)
 
         print("\n[System] - Init hash set!\n")
 
@@ -31,18 +31,18 @@ class HashSet:
                 new_hash_set = dict()
 
                 for start in range(0, len(self.get_hash_set()) * 2):
-                    new_hash_set[start] = []
+                    new_hash_set[start] = set()
                     self.divider = len(self.get_hash_set()) * 2
 
                 for start in range(0, len(self.get_hash_set())):
                     for _value in self.get_hash_set()[start]:
                         bucket = self.hash_code(_value)
-                        new_hash_set[bucket].append(_value)
+                        new_hash_set[bucket].add(_value)
             
                 self.set_hash_set(new_hash_set)
 
             bucket = self.hash_code(value)
-            self.__hash_set[bucket].append(value)
+            self.__hash_set[bucket].add(value)
             self.count_values += 1
     
     def remove(self, value):
@@ -51,7 +51,7 @@ class HashSet:
                 new_hash_set = dict()
 
                 for start in range(0, round(len(self.get_hash_set()) / 2)):
-                    new_hash_set[start] = []
+                    new_hash_set[start] = set()
                     self.divider = round(len(self.get_hash_set()) / 2)
 
                 for start in range(0, len(self.get_hash_set())):
