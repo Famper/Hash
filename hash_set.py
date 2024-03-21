@@ -35,9 +35,9 @@ class HashSet:
                     self.divider = len(self.get_hash_set()) * 2
 
                 for start in range(0, len(self.get_hash_set())):
-                    for value in self.get_hash_set()[start]:
-                        bucket = self.hash_code(value)
-                        new_hash_set[bucket].append(value)
+                    for _value in self.get_hash_set()[start]:
+                        bucket = self.hash_code(_value)
+                        new_hash_set[bucket].append(_value)
             
                 self.set_hash_set(new_hash_set)
 
@@ -55,9 +55,9 @@ class HashSet:
                     self.divider = round(len(self.get_hash_set()) / 2)
 
                 for start in range(0, len(self.get_hash_set())):
-                    for value in self.get_hash_set()[start]:
-                        bucket = self.hash_code(value)
-                        new_hash_set[bucket].append(value)
+                    for _value in self.get_hash_set()[start]:
+                        bucket = self.hash_code(_value)
+                        new_hash_set[bucket].append(_value)
                 
                 self.set_hash_set(new_hash_set)
             
