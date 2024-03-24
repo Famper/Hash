@@ -7,7 +7,7 @@ class HashSet:
         self.count_values: int = 0
         self.divider: int = len(self.__hash_set)
 
-        print("\n[System] - Init hash set!")
+        print("\n[SYSTEM] - Init hash set!")
 
     def get_hash_set(self) -> dict:
         """

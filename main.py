@@ -17,7 +17,7 @@ def set_default(obj):
 
 
 if __name__ == '__main__':
-    print(f"\n[System] - Start")
+    print(f"\n[SYSTEM] - Start")
 
     hash_object = HashSet()
 
@@ -36,4 +36,4 @@ if __name__ == '__main__':
             fp=file
         )
 
-    print(f"\n[System] - End!")
+    print(f"\n[SYSTEM] - End!")
