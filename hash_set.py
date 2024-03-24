@@ -23,52 +23,47 @@ class HashSet:
         """
         self.__hash_set: dict = new_hash_set
     
-    def hash_code(self, value) -> int:
+    def hash_code(self, value: any) -> int:
         """
         Get code from value
         :param value:
         :return:
         """
-        result = 0
-
-        for letter in list(value):
-            result += ord(letter)
-        
-        return result % self.divider
+        return hash(value) % self.divider
     
-    def existence(self, value: str) -> bool:
+    def existence(self, value: any) -> bool:
         """
         Check key in HashSet
         :param value:
         :return:
         """
-        bucket = self.hash_code(value)
+        bucket: int = self.hash_code(value)
 
         return value in self.get_hash_set()[bucket]
 
-    def generate_new_dict(self, _type: int = 1):
+    def generate_new_dict(self, _type: int = 1) -> None:
         """
         Update count buckets in HashSet and update position elements in buckets
         :param _type: 1 = Positive, other = Negative
         """
         if _type == 1:
-            self.divider = len(self.get_hash_set()) * 2
+            self.divider: int = len(self.get_hash_set()) * 2
         else:
-            self.divider = len(self.get_hash_set()) / 2
+            self.divider: int = round(len(self.get_hash_set()) / 2)
 
         new_hash_set = dict()
 
         for start in range(0, self.divider):
-            new_hash_set[start] = set()
+            new_hash_set[start]: set = set()
 
         for start in range(0, len(self.get_hash_set())):
             for _value in self.get_hash_set()[start]:
-                bucket = self.hash_code(_value)
+                bucket: int = self.hash_code(_value)
                 new_hash_set[bucket].add(_value)
 
         self.set_hash_set(new_hash_set)
     
-    def append(self, value: str):
+    def append(self, value: any) -> None:
         """
         Add new value in HashSet
         :param value:
@@ -77,11 +72,11 @@ class HashSet:
             if self.count_values == len(self.get_hash_set()):
                 self.generate_new_dict()
 
-            bucket = self.hash_code(value)
+            bucket: int = self.hash_code(value)
             self.__hash_set[bucket].add(value)
             self.count_values += 1
     
-    def remove(self, value):
+    def remove(self, value: any) -> None:
         """
         Remove value in HashSet
         :param value:
@@ -90,6 +85,6 @@ class HashSet:
             if self.count_values == round(len(self.get_hash_set()) / 2):
                 self.generate_new_dict(_type=0)
             
-            bucket = self.hash_code(value)
+            bucket: int = self.hash_code(value)
             self.__hash_set[bucket].remove(value)
             self.count_values -= 1
