@@ -29,12 +29,7 @@ class HashSet:
         :param value:
         :return:
         """
-        result = 0
-
-        for letter in list(value):
-            result += ord(letter)
-        
-        return result % self.divider
+        return hash(value) % self.divider
     
     def existence(self, value: str) -> bool:
         """
