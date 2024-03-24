@@ -57,9 +57,10 @@ class HashTable:
             new_hash_set[start]: dict = dict()
 
         for start in range(0, len(self.get_hash_table())):
-            for _value in self.get_hash_table()[start]:
-                bucket: int = self.hash_code(_value)
-                new_hash_set[bucket].add(_value)
+            for key, _value in self.get_hash_table()[start].items():
+                bucket: int = self.hash_code(key)
+
+                new_hash_set[bucket][key] = _value
 
         self.set_hash_table(new_hash_set)
 
