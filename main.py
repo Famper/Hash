@@ -37,14 +37,14 @@ if __name__ == '__main__':
 
     with open('output_set.json', 'w', encoding='UTF-8') as file:
         json.dump(
-            obj=hash_object.get_hash_set(),
+            obj=hash_object.hash_set,
             default=set_default,
             fp=file
         )
 
     with open('output_table.json', 'w', encoding='UTF-8') as file:
         json.dump(
-            obj=hash_table.get_hash_table(),
+            obj=hash_table.hash_table,
             default=set_default,
             fp=file
         )

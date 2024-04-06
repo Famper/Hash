@@ -3,33 +3,12 @@ class HashTable:
         """
         HashTable initialization class
         """
-        self.__hash_table: dict = {0: {}, 1: {}, 2: {}, 3: {}, 4: {}}
+        self.hash_table: dict = {0: {}, 1: {}, 2: {}, 3: {}, 4: {}}
         self.count_values: int = 0
-        self.divider: int = len(self.__hash_table)
+        self.divider: int = len(self.hash_table)
+        self.bucket: int | None = None
 
         print("\n[SYSTEM] - Init hash table!")
-
-    def get_hash_table(self) -> dict:
-        """
-        Get HashSet
-        :return:
-        """
-        return self.__hash_table
-
-    def set_hash_table(self, new_hash_table: dict) -> None:
-        """
-        Set new HashSet
-        :param new_hash_table:
-        """
-        self.__hash_table: dict = new_hash_table
-
-    def hash_code(self, key: any) -> int:
-        """
-        Get code from value
-        :param key:
-        :return:
-        """
-        return hash(key) % self.divider
 
     def existence(self, key: any) -> bool:
         """
@@ -37,9 +16,9 @@ class HashTable:
         :param key:
         :return:
         """
-        bucket: int = self.hash_code(key)
+        self.bucket: int = hash(key) % self.divider
 
-        return key in self.get_hash_table()[bucket].keys()
+        return key in self.hash_table[self.bucket].keys()
 
     def generate_new_dict(self, _type: int = 1):
         """
@@ -47,22 +26,22 @@ class HashTable:
         :param _type: 1 = Positive, other = Negative
         """
         if _type == 1:
-            self.divider: int = len(self.get_hash_table()) * 2
+            self.divider: int = self.divider * 2
         else:
-            self.divider: int = round(len(self.get_hash_table()) / 2)
+            self.divider: int = round(self.divider / 2)
 
         new_hash_set: dict = dict()
 
         for start in range(0, self.divider):
             new_hash_set[start]: dict = dict()
 
-        for start in range(0, len(self.get_hash_table())):
-            for key, _value in self.get_hash_table()[start].items():
-                bucket: int = self.hash_code(key)
+        for start in range(0, len(self.hash_table)):
+            for key, _value in self.hash_table[start].items():
+                bucket: int = hash(key) % self.divider
 
                 new_hash_set[bucket][key] = _value
 
-        self.set_hash_table(new_hash_set)
+        self.hash_table: dict = new_hash_set
 
     def append(self, key: any, value: any):
         """
@@ -71,11 +50,10 @@ class HashTable:
         :param value:
         """
         if not self.existence(key):
-            if self.count_values == len(self.get_hash_table()):
+            if self.count_values == self.divider:
                 self.generate_new_dict()
 
-            bucket: int = self.hash_code(key)
-            self.__hash_table[bucket][key] = value
+            self.hash_table[self.bucket][key] = value
             self.count_values += 1
 
     def remove(self, key: any):
@@ -84,15 +62,14 @@ class HashTable:
         :param key:
         """
         if self.existence(key):
-            if self.count_values == round(len(self.get_hash_table()) / 2):
+            if self.count_values == round(self.divider / 2):
                 self.generate_new_dict(_type=0)
 
-            bucket: int = self.hash_code(key)
-            del self.__hash_table[bucket][key]
+            del self.hash_table[self.bucket][key]
             self.count_values -= 1
 
     def get_value(self, key: str):
         if self.existence(key):
-            bucket: int = self.hash_code(key)
+            bucket: int = hash(key) % self.divider
 
-            return self.get_hash_table()[bucket].get(key, None)
+            return self.hash_table[bucket].get(key, None)

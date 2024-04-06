@@ -3,43 +3,22 @@ class HashSet:
         """
         HashSet initialization class
         """
-        self.__hash_set: dict = {0: set(), 1: set(), 2: set(), 3: set(), 4: set()}
+        self.hash_set: dict = {0: set(), 1: set(), 2: set(), 3: set(), 4: set()}
         self.count_values: int = 0
-        self.divider: int = len(self.__hash_set)
+        self.divider: int = len(self.hash_set)
+        self.bucket: int | None = None
 
         print("\n[SYSTEM] - Init hash set!")
 
-    def get_hash_set(self) -> dict:
-        """
-        Get HashSet
-        :return:
-        """
-        return self.__hash_set
-
-    def set_hash_set(self, new_hash_set: dict) -> None:
-        """
-        Set new HashSet
-        :param new_hash_set:
-        """
-        self.__hash_set: dict = new_hash_set
-    
-    def hash_code(self, value: any) -> int:
-        """
-        Get code from value
-        :param value:
-        :return:
-        """
-        return hash(value) % self.divider
-    
     def existence(self, value: any) -> bool:
         """
         Check key in HashSet
         :param value:
         :return:
         """
-        bucket: int = self.hash_code(value)
+        self.bucket: int = hash(value) % self.divider
 
-        return value in self.get_hash_set()[bucket]
+        return value in self.hash_set[self.bucket]
 
     def generate_new_dict(self, _type: int = 1) -> None:
         """
@@ -47,44 +26,42 @@ class HashSet:
         :param _type: 1 = Positive, other = Negative
         """
         if _type == 1:
-            self.divider: int = len(self.get_hash_set()) * 2
+            self.divider: int = self.divider * 2
         else:
-            self.divider: int = round(len(self.get_hash_set()) / 2)
+            self.divider: int = round(self.divider / 2)
 
         new_hash_set = dict()
 
         for start in range(0, self.divider):
             new_hash_set[start]: set = set()
 
-        for start in range(0, len(self.get_hash_set())):
-            for _value in self.get_hash_set()[start]:
-                bucket: int = self.hash_code(_value)
+        for start in range(0, len(self.hash_set)):
+            for _value in self.hash_set[start]:
+                bucket: int = hash(_value) % self.divider
                 new_hash_set[bucket].add(_value)
 
-        self.set_hash_set(new_hash_set)
-    
+        self.hash_set = new_hash_set
+
     def append(self, value: any) -> None:
         """
         Add new value in HashSet
         :param value:
         """
         if not self.existence(value):
-            if self.count_values == len(self.get_hash_set()):
+            if self.count_values == len(self.hash_set):
                 self.generate_new_dict()
 
-            bucket: int = self.hash_code(value)
-            self.__hash_set[bucket].add(value)
+            self.hash_set[self.bucket].add(value)
             self.count_values += 1
-    
+
     def remove(self, value: any) -> None:
         """
         Remove value in HashSet
         :param value:
         """
         if self.existence(value):
-            if self.count_values == round(len(self.get_hash_set()) / 2):
+            if self.count_values == round(len(self.hash_set) / 2):
                 self.generate_new_dict(_type=0)
-            
-            bucket: int = self.hash_code(value)
-            self.__hash_set[bucket].remove(value)
+
+            self.hash_set[self.bucket].remove(value)
             self.count_values -= 1
