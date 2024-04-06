@@ -3,7 +3,7 @@ class HashTable:
         """
         HashTable initialization class
         """
-        self.hash_table: dict = {0: {}, 1: {}, 2: {}, 3: {}, 4: {}}
+        self.hash_table: dict = {0: {}}
         self.count_values: int = 0
         self.divider: int = len(self.hash_table)
         self.bucket: int | None = None
@@ -68,7 +68,7 @@ class HashTable:
             del self.hash_table[self.bucket][key]
             self.count_values -= 1
 
-    def get_value(self, key: str):
+    def get_value(self, key: any):
         if self.existence(key):
             bucket: int = hash(key) % self.divider
 

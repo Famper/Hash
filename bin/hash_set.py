@@ -3,7 +3,7 @@ class HashSet:
         """
         HashSet initialization class
         """
-        self.hash_set: dict = {0: set(), 1: set(), 2: set(), 3: set(), 4: set()}
+        self.hash_set: dict = {0: set()}
         self.count_values: int = 0
         self.divider: int = len(self.hash_set)
         self.bucket: int | None = None

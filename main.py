@@ -1,8 +1,8 @@
 import json
 import re
 
-from hash_set import HashSet
-from hash_table import HashTable
+from bin.hash_set import HashSet
+from bin.hash_table import HashTable
 
 
 def set_default(obj):

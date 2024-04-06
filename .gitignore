@@ -162,3 +162,4 @@ cython_debug/
 .idea
 /output_set.json
 /output_table.json
+/output-table.json
