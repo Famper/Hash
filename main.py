@@ -1,3 +1,5 @@
+"""Module providing a function printing python version."""
+
 import json
 import re
 
@@ -18,7 +20,7 @@ def set_default(obj):
 
 
 if __name__ == '__main__':
-    print(f"\n[SYSTEM] - Start")
+    print("\n[SYSTEM] - Start")
 
     hash_object: HashSet = HashSet()
     hash_table: HashTable = HashTable()
@@ -49,4 +51,4 @@ if __name__ == '__main__':
             fp=file
         )
 
-    print(f"\n[SYSTEM] - End!")
+    print("\n[SYSTEM] - End!")

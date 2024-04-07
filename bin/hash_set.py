@@ -1,3 +1,6 @@
+"""Module providing a function printing python version."""
+
+
 class HashSet:
     """Hash set example."""
 
