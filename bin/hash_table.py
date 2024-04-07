@@ -1,7 +1,6 @@
-"""Hash Table Implementation"""
-
-
 class HashTable:
+    """Hash Table Implementation"""
+
     def __init__(self) -> None:
         """
         HashTable initialization class
