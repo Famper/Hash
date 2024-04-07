@@ -74,6 +74,11 @@ class HashTable:
             self.count_values -= 1
 
     def get_value(self, key: any):
+        """
+        Get value of key in HashTable
+        :param key:
+        :return:
+        """
         if self.existence(key):
             bucket: int = hash(key) % self.divider
 
