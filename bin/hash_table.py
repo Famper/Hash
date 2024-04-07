@@ -73,7 +73,7 @@ class HashTable:
             del self.hash_table[self.bucket][key]
             self.count_values -= 1
 
-    def get_value(self, key: any):
+    def get_value(self, key: any) -> any:
         """
         Get value of key in HashTable
         :param key:
