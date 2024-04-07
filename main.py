@@ -1,8 +1,10 @@
+"""Module providing a function printing python version."""
+
 import json
 import re
 
-from hash_set import HashSet
-from hash_table import HashTable
+from bin.hash_set import HashSet
+from bin.hash_table import HashTable
 
 
 def set_default(obj):
@@ -18,7 +20,7 @@ def set_default(obj):
 
 
 if __name__ == '__main__':
-    print(f"\n[SYSTEM] - Start")
+    print("\n[SYSTEM] - Start")
 
     hash_object: HashSet = HashSet()
     hash_table: HashTable = HashTable()
@@ -37,16 +39,16 @@ if __name__ == '__main__':
 
     with open('output_set.json', 'w', encoding='UTF-8') as file:
         json.dump(
-            obj=hash_object.get_hash_set(),
+            obj=hash_object.hash_set,
             default=set_default,
             fp=file
         )
 
     with open('output_table.json', 'w', encoding='UTF-8') as file:
         json.dump(
-            obj=hash_table.get_hash_table(),
+            obj=hash_table.hash_table,
             default=set_default,
             fp=file
         )
 
-    print(f"\n[SYSTEM] - End!")
+    print("\n[SYSTEM] - End!")
