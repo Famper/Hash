@@ -40,7 +40,7 @@ class HashTable:
         for start in range(0, self.divider):
             new_hash_set[start]: dict = {}
 
-        for start in range(0, len(self.hash_table)):
+        for start, __value in enumerate(self.hash_table.keys()):
             for key, _value in self.hash_table[start].items():
                 bucket: int = hash(key) % self.divider
 

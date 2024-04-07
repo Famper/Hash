@@ -40,7 +40,7 @@ class HashSet:
         for start in range(0, self.divider):
             new_hash_set[start]: set = set()
 
-        for start in range(0, len(self.hash_set)):
+        for start, __value in enumerate(self.hash_set.keys()):
             for _value in self.hash_set[start]:
                 bucket: int = hash(_value) % self.divider
                 new_hash_set[bucket].add(_value)
