@@ -32,10 +32,10 @@ class HashTable:
         else:
             self.divider: int = round(self.divider / 2)
 
-        new_hash_set: dict = dict()
+        new_hash_set: dict = {}
 
         for start in range(0, self.divider):
-            new_hash_set[start]: dict = dict()
+            new_hash_set[start]: dict = {}
 
         for start in range(0, len(self.hash_table)):
             for key, _value in self.hash_table[start].items():

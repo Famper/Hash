@@ -32,7 +32,7 @@ class HashSet:
         else:
             self.divider: int = round(self.divider / 2)
 
-        new_hash_set = dict()
+        new_hash_set = {}
 
         for start in range(0, self.divider):
             new_hash_set[start]: set = set()
