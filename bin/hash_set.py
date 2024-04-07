@@ -1,3 +1,6 @@
+"""Hash set example."""
+
+
 class HashSet:
     def __init__(self) -> None:
         """
