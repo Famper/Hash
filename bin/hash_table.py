@@ -77,9 +77,11 @@ class HashTable:
         """
         Get value of key in HashTable
         :param key:
-        :return: Any
+        :return:
         """
         if self.existence(key):
             bucket: int = hash(key) % self.divider
 
             return self.hash_table[bucket].get(key, None)
+
+        return None
